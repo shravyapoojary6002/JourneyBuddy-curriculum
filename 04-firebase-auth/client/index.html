@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Login</title>
+</head>
+<body>
+
+  <h2>Login Page</h2>
+  <input id="email" type="text" placeholder="Enter email" />
+  <input id="password" type="password" placeholder="Enter password" />
+
+  <button onclick="signUp()">Sign Up</button>
+  <button onclick="logIn()">Log In</button>
+  <button onclick="callServer()">Call Protected Route</button>
+
+  <p id="result"></p>
+
+  <script type="module">
+    // import the firebase functions we need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+    } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+    // your real firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyBga2DN9iVUXbH1bF3vO55nseYX9x7SmBU",
+      authDomain: "journey-demo-4bd01.firebaseapp.com",
+      projectId: "journey-demo-4bd01",
+    };
+
+    // connect to firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // sign up function - runs when Sign Up button is clicked
+    window.signUp = function () {
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+
+      createUserWithEmailAndPassword(auth, email, password)
+        .then(function (userCredential) {
+          document.getElementById("result").innerText = "Signed up! Your ID: " + userCredential.user.uid;
+        })
+        .catch(function (error) {
+          document.getElementById("result").innerText = "Error: " + error.message;
+        });
+    };
+
+    // log in function - runs when Log In button is clicked
+    window.logIn = function () {
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+
+      signInWithEmailAndPassword(auth, email, password)
+        .then(function (userCredential) {
+          document.getElementById("result").innerText = "Logged in! Your ID: " + userCredential.user.uid;
+        })
+        .catch(function (error) {
+          document.getElementById("result").innerText = "Error: " + error.message;
+        });
+    };
+
+    // this function gets our "token" (like a temporary ID card)
+    // and sends it to our own server to prove who we are
+    window.callServer = function () {
+      var user = auth.currentUser;
+
+      if (!user) {
+        document.getElementById("result").innerText = "Please log in first!";
+        return;
+      }
+
+      user.getIdToken().then(function (token) {
+        fetch("http://localhost:4000/protected", {
+          headers: { Authorization: "Bearer " + token },
+        })
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (data) {
+            document.getElementById("result").innerText = JSON.stringify(data);
+          });
+      });
+    };
+  </script>
+
+</body>
+</html>
