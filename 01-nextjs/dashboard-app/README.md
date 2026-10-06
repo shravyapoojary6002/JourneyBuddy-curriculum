@@ -1,8 +1,7 @@
 # 2.1 Next.js Frontend Architecture
 
 ## Core Principle
-Next.js splits components into server components (render once on the server) and client components (marked with
-"use client")
+Next.js splits components into server components (render once on the server) and client components (marked with "use client")
 
 ## What I built
 - app/dashboard/page.jsx — a server component, fetches summary data and renders it as static HTML
@@ -29,10 +28,6 @@ npm run dev
 - Open browser and go to https://localhost:3000
 - To open dashboard go to
 https://localhost:3000/dashboard
-
-## Not yet implemented
-   - Live status card (useEffect + polling an API route) — planned as a
-     follow-up extension to this module.
 
 ## Reference
 https://nextjs.org/docs

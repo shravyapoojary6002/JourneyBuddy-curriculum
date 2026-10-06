@@ -4,9 +4,9 @@
 A basic FastAPI app with three endpoints demonstrating automatic request validation using Python type hints and Pydantic models.
 
 ## Schema validation rules
-- `Item` model: `id` must be a positive integer, `name` a non-empty string,`price` a positive number.
-- `GET /items/{item_id}`: `item_id` must be an integer 
-- `GET /items`: optional `category` (string) and `limit` (integer) query parameters.
+- Item model: id must be a positive integer, name a non-empty string,price a positive number.
+- GET /items/{item_id}: item_id must be an integer 
+- GET /items: optional category (string) and limit (integer) query parameters.
 
 ## How to run it
 - Create virtual environment:

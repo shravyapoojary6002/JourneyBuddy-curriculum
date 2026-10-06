@@ -3,11 +3,11 @@
 ## What this does
 A basic Express server with one middleware function (`logger`) that runs before every request reaches its route handler.
 
-## How the pipeline works
-1. **Capture entry timestamp** — `new Date().toISOString()` records when the request arrived.
-2. **Inspect header parameters** — reads `req.headers["user-agent"]` to see what client made the request.
-3. **Write telemetry** — logs a line to the console with the timestamp,method, URL, and user-agent.
-4. **Forward control** — calls `next()` to pass the request down to the actual route handler (`app.get("/", ...)`). Without `next()`, the request would hang forever.
+## How the middleware works
+1. **Record the time**: saves when the request arrived.
+2. **Read the user-agent**: checks which client (browser, Postman, etc.) sent the request.
+3. **Log it**: prints the time, method, URL, and user-agent to the console.
+4. **Call `next()`**: passes the request on to the route handler. Without it, the request hangs.
 
 ## How to run it
 run
