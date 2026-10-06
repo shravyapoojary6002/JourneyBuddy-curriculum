@@ -1,27 +1,28 @@
 # Module 2.6 — Pinecone & Vector Databases
 
 ## What this does
-Uploads 5 sample sentences  into a Pinecone index, then queries with a new vector to see how cosine similarity ranks them by semantic closeness.
+Saves 5 sentences into Pinecone, then asks a question to see which sentences are most similar in meaning.
 
-## The sentences (grouped by topic on purpose)
+## The sentences
 - Food: "I love eating pizza", "Pasta is my favorite food"
 - Finance: "The stock market crashed today", "Investors are worried about inflation"
 - Exercise: "I went for a run this morning"
 
-## Result
-Querying with a vector representing "I enjoy tasty food" returned:
-1. "I love eating pizza" — similarity 0.999
-2. "Pasta is my favorite food" — similarity 0.999
-3. "I went for a run this morning" — similarity 0.406
+## What happened
+I asked something like "I enjoy tasty food" and got back:
+1. "I love eating pizza" — very close match
+2. "Pasta is my favorite food" — very close match
+3. "I went for a run this morning" — not a close match
 
-This shows cosine similarity correctly ranking the two food-related sentences far above the unrelated ones, based purely on how close their vectors are — this is how semantic search finds relevant results without matching exact keywords.
+## Why this matters
+The two food sentences scored much higher than the others. This shows that Pinecone can find sentences with similar meaning, even without using the exact same words.
 
 ## how to run
-- install requred packages
+- install requred packages:
 npm install
-- run progran 
+- run progran :
 node sentences.js
-- Requires a `.env` file with `PINECONE_API_KEY=<your key>` (not committed to Git).
+- Requires a `.env` file with `PINECONE_API_KEY` (not committed to Git).
 
 ## Reference documentation
 https://docs.pinecone.io/

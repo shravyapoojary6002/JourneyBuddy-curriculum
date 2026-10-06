@@ -3,15 +3,13 @@
 ## What this does
 A minimal Express server packaged into a Docker container using a multi-stage-style Dockerfile
 
-## Dockerfile breakdown
-| Instruction | Purpose |
-|---|---|
-| `FROM node:18-alpine` | minimal base OS with Node.js pre-installed |
-| `WORKDIR /app` | sets the working folder inside the container |
-| `COPY package.json .` + `RUN npm install` | installs dependencies inside the container (not copied from host) |
-| `COPY . .` | transfers the rest of the app's build artifacts |
-| `EXPOSE 3000` | documents which port the app listens on |
-| `CMD ["node", "server.js"]` | the command that runs when the container boots |
+## What's in the Dockerfile
+- `FROM node:18-alpine` — picks a small starting point that already has Node.js
+- `WORKDIR /app` — creates a folder inside the container for our app
+- `COPY package.json .` and `RUN npm install` — installs the packages our app needs
+- `COPY . .` — copies the rest of our code into the container
+- `EXPOSE 3000` — says which port the app uses
+- `CMD ["node", "server.js"]` — starts the app when the container runs
 
 
 ## How to run it
