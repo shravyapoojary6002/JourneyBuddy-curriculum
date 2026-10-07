@@ -17,16 +17,13 @@ flowchart LR
 ```
 
 ## What each part does
-
-| Part | What it does | Which module |
-|---|---|---|
-| Web/Mobile App | Where the user types their question | Next.js, Google ADK |
-| API Gateway | Receives the request, checks it's safe | Node.js, FastAPI |
-| Login Check | Makes sure the user is really logged in | Firebase Auth |
-| Redis Cache | Checks if we already have this answer saved | Redis |
-| Vector Database | Looks up related info for the question | MongoDB, Pinecone |
-| AI Agent | Decides how to answer, maybe using a tool | LangChain, Agentic AI |
-| Docker + Cloud | Where all of this actually runs | Docker, GCP |
+- **Web/Mobile App** — where the user types their question (Next.js, Google ADK)
+- **API Gateway** — receives the request and checks it's safe (Node.js, FastAPI)
+- **Login Check** — makes sure the user is really logged in (Firebase Auth)
+- **Redis Cache** — checks if we already have this answer saved (Redis)
+- **Vector Database** — looks up related info for the question (MongoDB, Pinecone)
+- **AI Agent** — decides how to answer, maybe using a tool (LangChain, Agentic AI)
+- **Docker + Cloud** — where all of this actually runs (Docker, GCP)
 
 ## How a question travels through the system
 1. User asks a question on the app

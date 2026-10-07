@@ -1,7 +1,7 @@
 # Module 2.11 — Google ADK (Android Development Kit)
 
 ## What this shows
-A simple diagram of what happens when a user taps a button in a mobile app to load data from a server.
+A diagram of what happens when someone taps a button in a mobile app to load data from a server.
 
 ## Diagram
 
@@ -12,21 +12,22 @@ sequenceDiagram
     participant S as App State
     participant API as Server
 
-    U->>UI: Taps "Refresh" button
-    UI->>S: Tells app to start loading
-    S->>UI: Shows loading spinner
-    S->>API: Sends request for data
+    U->>UI: Taps a button
+    UI->>S: Tells the app to start loading
+    S->>UI: Shows a loading spinner
+    S->>API: Asks the server for data
     API-->>S: Sends back the data
-    S->>S: Updates with new data
-    S->>UI: Screen updates to show new data
+    S->>S: Saves the new data
+    S->>UI: Screen updates to show the new data
 ```
 
-## Steps explained simply
+## Steps explanation
 1. User taps a button
 2. The app shows a loading spinner right away
-3. The app asks the server for data in the background (so the screen doesn't freeze)
-4. When the server replies, the app saves the new data
-5. The screen updates automatically to show it
+3. The app asks the server for data in the background, so the screen doesn't freeze
+4. The server sends back the data
+5. The app saves the new data
+6. The screen updates automatically to show it
 
 ## Reference documentation
 https://adk.dev/
